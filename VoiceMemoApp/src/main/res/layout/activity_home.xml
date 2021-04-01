@@ -60,4 +60,13 @@
         android:layout_marginBottom="286dp"
         android:background="?selectableItemBackground"
         android:src="@android:drawable/ic_btn_speak_now" />
+
+    <Button
+        android:id="@+id/memoViewButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="151dp"
+        android:text="View Memos" />
 </RelativeLayout>

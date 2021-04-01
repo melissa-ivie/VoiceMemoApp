@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +40,9 @@ public class UserViewModel extends ViewModel {
                     user.setValue(new User(fbUser));
                 }
             }
+
         });
+
     }
 
     public MutableLiveData<User> getUser() {
@@ -77,7 +80,16 @@ public class UserViewModel extends ViewModel {
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/memos/" + key, data);
         userData.updateChildren(childUpdates);
+    }
 
-
+    public List<String> getMemos(){
+        List<String> memos = new ArrayList<String>();
+        DatabaseReference userData = database.child("userData").child(user.getValue().uid);
+        Task<DataSnapshot> reference = userData.child("memos").get();
+        if(null != reference.getResult()){
+            Iterable<DataSnapshot> children = reference.getResult().getChildren();
+            children.forEach(child -> {memos.add(child.getValue().toString());});
+        }
+        return memos;
     }
 }

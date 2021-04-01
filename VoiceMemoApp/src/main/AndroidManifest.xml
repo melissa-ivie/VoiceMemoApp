@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Android3200StarterApplication">
 
         <activity android:name="com.melissaivieusuphonewithlogin.phoneapp.HomeActivity"></activity>
-
+        <activity android:name="com.melissaivieusuphonewithlogin.phoneapp.ViewMemosActivity"></activity>
         <activity android:name="com.melissaivieusuphonewithlogin.phoneapp.SignInSignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
