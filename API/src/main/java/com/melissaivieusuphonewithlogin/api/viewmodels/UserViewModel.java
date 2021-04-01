@@ -6,20 +6,24 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.melissaivieusuphonewithlogin.api.models.User;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UserViewModel extends ViewModel {
     FirebaseAuth auth;
     DatabaseReference database;
     MutableLiveData<User> user = new MutableLiveData<>();
-//    MutableLiveData<RuntimeException> loginError = new MutableLiveData<>();
     public UserViewModel() {
         this.auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
         FirebaseUser fbUser = auth.getCurrentUser();
-//                loginError.setValue(null);
         if (fbUser == null) {
             user.setValue(null);
         } else {
@@ -29,7 +33,6 @@ public class UserViewModel extends ViewModel {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser fbUser = auth.getCurrentUser();
-//                loginError.setValue(null);
                 if (fbUser == null) {
                     user.setValue(null);
                 } else {
@@ -64,9 +67,17 @@ public class UserViewModel extends ViewModel {
         auth.signOut();
     }
 
-    public void storeUserSpecificData() {
-        if (user.getValue() == null) return;
-        database.child("userData").child(user.getValue().uid).child("name").setValue("My users name update");
-        database.child("userData").child(user.getValue().uid).child("testing").setValue("My users name update");
+    public void setUpMemoField(){
+        database.child("userData").child(user.getValue().uid).child("memos").setValue(new ArrayList<String>());
+    }
+
+    public void storeUserSpecificData(String data) {
+        DatabaseReference userData = database.child("userData").child(user.getValue().uid);
+        String key = userData.push().getKey();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/memos/" + key, data);
+        userData.updateChildren(childUpdates);
+
+
     }
 }
