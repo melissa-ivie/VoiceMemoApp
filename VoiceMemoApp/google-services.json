@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "109376693186",
+    "project_id": "memofirebase-ee22a",
+    "storage_bucket": "memofirebase-ee22a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109376693186:android:bc542720ad1a6b189fec5b",
+        "android_client_info": {
+          "package_name": "com.melissaivieusuphonewithlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109376693186-t10dlmu7dihcgvk8sa6qtotmjmh58ot5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuKVbBwUC4iLaNLHA1FHOEyd35G2JFMa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109376693186-t10dlmu7dihcgvk8sa6qtotmjmh58ot5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

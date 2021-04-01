@@ -1,0 +1,4 @@
+include ':WatchStarter'
+include ':API'
+include ':VoiceMemoApp'
+rootProject.name = "MemoApp"
